@@ -89,7 +89,7 @@
 						<td>jamesreed</td>
 						<td>male</td>
 						<td>james.reed@unep.org</td>
-						<td><button type="submit" class="btn btn-primary">Edit</button></td>
+						<td><button type="submit" class="btn btn-primary edituserbtn">Edit</button></td>
 					</tr>
 					<tr>
 						<td>Antony Kim</td>
@@ -97,7 +97,7 @@
 						<td>antokim</td>
 						<td>male</td>
 						<td>antony.kim@unep.org</td>
-						<td><button type="submit" class="btn btn-primary">Edit</button></td>
+						<td><button type="submit" class="btn btn-primary edituserbtn">Edit</button></td>
 					</tr>
 					<tr>
 						<td>Stellah Cherono</td>
@@ -105,7 +105,7 @@
 						<td>stellahc</td>
 						<td>female</td>
 						<td>Stellah.Cherono@unep.org</td>
-						<td><button type="submit" class="btn btn-primary">Edit</button></td>
+						<td><button type="submit" class="btn btn-primary edituserbtn">Edit</button></td>
 					</tr>
 					
 				</tbody>
@@ -154,6 +154,11 @@
 				return '0';
 			}
 		}
+		
+		//function to redirect page		
+		$(document).on('click', '.edituserbtn', function(){
+			window.location.href = 'edit_user.php';
+		});
 		
 		//function to ensure all values are entered correctly
 		function validate(e){
