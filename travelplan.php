@@ -81,16 +81,12 @@
 					</select>
 			    </div>
 			    <div class="form-group">
-					<label class="control-label" for="est_cost">Estimated travel cost USD:</label>
-					<input type="text" class="form-control allcosts" id="est_cost" name = "est_cost" placeholder="Estimated travel cost USD">
+					<label class="control-label" for="estimated_cost">Estimated travel cost USD:</label>
+					<input type="text" class="form-control allcosts" id="estimated_cost" name = "estimated_cost" placeholder="Estimated travel cost USD">
 			    </div>
 			    <div class="form-group">
 				  <div class="panel panel-primary">  
 				   <div class="panel-body">
-					<label for="add_name">Additional Name:</label>
-					<input type="text" class="form-control" id="add_name" name = "add_name[]" placeholder="Additional Name">
-					<label for="add_cost">Additional Cost:</label>
-					<input type="text" class="form-control allcosts" id="add_cost" name = "add_cost[]" placeholder="Additional Cost">
 					<div id = "additional_fields"></div>
 					<a href = "javascript:add_fields()"><div class="glyphicon glyphicon-plus"></div>Add Additional Costs</a>
 				   </div>
@@ -147,7 +143,7 @@
 			    </div>
 			    <div class="form-group">
 					<label class="control-label" for="comm_support">Communications support required:</label>
-					<input type="text" class="form-control" id="comm_support" name = "comm_support" placeholder="Communications support required">
+					<input type="text" class="form-control" id="communication_support" name = "communication_support" placeholder="Communications support required">
 			    </div>
 			    <button type="submit" class="btn btn-primary">Submit</button>
 			   </form>
@@ -168,7 +164,7 @@
           <h4 class="modal-title">Travel System</h4>
         </div>
         <div class="modal-body">
-          <p style = "color: red">Please fill in all the fields</p>
+          <div style = "color: red" id = "errormsgs"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -181,20 +177,21 @@
 	    
 	    //function to add new cost fields to the form
 		function add_fields(){
-			var add_html = '<label class="control-label" for="add_name">Additional Name:</label><input type="text" class="form-control" id="add_name" name = "add_name[]" placeholder="Additional Name"><label class="control-label" for="add_cost">Additional Cost:</label><input type="text" class="form-control allcosts" id="add_cost" name = "add_cost[]" placeholder="Additional Cost">';
+			var add_html = '<label class="control-label" for="additional_name">Additional Name:</label><input type="text" class="form-control" id="additional_name" name = "additional_name[]" placeholder="Additional Name"><label class="control-label" for="additional_cost">Additional Cost:</label><input type="text" class="form-control allcosts" id="additional_cost" name = "additional_cost[]" placeholder="Additional Cost">';
 			$('#additional_fields').append(add_html);
 		}
 		
 		//function to ensure all values are entered correctly
 		function validate(e){
 			
-			var inputs = $( ":input" );
+			$('#errormsgs').html('');
 			var error = 0;
 			
 			$('input').each(function() {
 				$(this).parent().closest('div').removeClass('has-error');
 				if($.trim($(this).val()) == ''){
 					$(this).parent().closest('div').addClass('has-error');
+					$('#errormsgs').append('<p>Please fill in the ' + $(this).attr('id') + ' field.</p>');
 					error = 1;
 				}	 
 			});

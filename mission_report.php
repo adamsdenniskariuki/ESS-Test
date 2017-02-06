@@ -61,7 +61,7 @@
           <h4 class="modal-title">Travel System</h4>
         </div>
         <div class="modal-body">
-          <p style = "color: red">Please fill in all the fields</p>
+          <div style = "color: red" id = "errormsgs"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -75,15 +75,22 @@
 		//function to ensure all values are entered correctly
 		function validate(e){
 			
+			$('#errormsgs').html('');
 			var error = 0;
 			
 			$('textarea').each(function() {
 				$(this).parent().closest('div').removeClass('has-error'); 
 				if($.trim($(this).val()) == ''){
 					$(this).parent().closest('div').addClass('has-error');
+					$('#errormsgs').append('<p>Please fill in the ' + $(this).attr('name') + ' field.</p>');
 					error = 1; 
 				}	
 			});
+			
+			if($('#report').val() == ''){
+				$('#errormsgs').append('<p>Please upload the mission document.</p>');
+				error == 1
+			}
 			
 			if(error == 1){
 				e.preventDefault();	

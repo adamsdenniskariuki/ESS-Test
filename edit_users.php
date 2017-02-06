@@ -40,8 +40,8 @@
 					<input type="text" class="form-control" id="name" name = "name" placeholder="Name">
 			       </div>
 			       <div class="form-group">
-					<label class="control-label" for="regno">Reg. No:</label>
-					<input type="text" class="form-control" id="regno" name = "regno" placeholder="Reg. No">
+					<label class="control-label" for="registration">Registration No:</label>
+					<input type="text" class="form-control" id="registration" name = "registration" placeholder="Registration No.">
 			       </div>
 			       <div class="form-group">
 					<label for="gender">Gender:</label>
@@ -63,8 +63,8 @@
 					<input type="password" class="form-control" id="password" name = "password" placeholder="Password">
 			       </div>
 			       <div class="form-group">
-					<label class="control-label" for="cpassword">Confirm Password:</label>
-					<input type="password" class="form-control" id="cpassword" name = "cpassword" placeholder="Confirm Password">
+					<label class="control-label" for="confirmpassword">Confirm Password:</label>
+					<input type="password" class="form-control" id="confirmpassword" name = "confirmpassword" placeholder="Confirm Password">
 			       </div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary">Create New User</button>
@@ -128,7 +128,7 @@
           <h4 class="modal-title">Travel System</h4>
         </div>
         <div class="modal-body">
-          <p style = "color: red">Please fill in all the fields</p>
+          <div style = "color: red" id = "errormsgs"></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -144,19 +144,42 @@
 			$('#menu7').addClass('active');
 		});
 		
+		//validate email
+		function validate_email(e){
+			var emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
+			if(emailformat.test(e)){
+				return '1';
+			}
+			else{
+				return '0';
+			}
+		}
+		
 		//function to ensure all values are entered correctly
 		function validate(e){
 			
-			var inputs = $( ":input" );
+			$('#errormsgs').html('');
 			var error = 0;
 			
 			$('input').each(function() {
 				$(this).parent().closest('div').removeClass('has-error'); 
-				if($.trim($(this).val()) == ''){
+				if($.trim($(this).val()) == '' && $(this).attr('class') != 'form-control input-sm'){
 					$(this).parent().closest('div').addClass('has-error');
+					$('#errormsgs').append('<p>Please fill in the ' + $(this).attr('name') + ' field.</p>');
 					error = 1;
 				} 
 			});
+			
+			if(validate_email($('#email').val()) == '0'){
+				$('#errormsgs').append('<p>Invalid email.</p>');
+				error = 1;
+			}
+			
+			if($('#password').val() != $('#confirmpassword').val()){
+				$('#errormsgs').append('<p>Passwords do not match.</p>');
+				error = 1;
+				
+			}
 			
 			if(error == 1){
 				e.preventDefault();	
