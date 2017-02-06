@@ -40,8 +40,10 @@
 						<th>Name</th>
 						<th>Meeting</th>
 						<th>Venue</th>
-						<th>Cost</th>
-						<th>View</th>
+						<th>Date From</th>
+						<th>Date To</th>
+						<th>Total Cost</th>
+						<th>Total Budget</th>
 						<th>Approve</th>
 						<th>Reject</th>
 					</tr>
@@ -52,40 +54,48 @@
 						<td>Adams Kariuki</td>
 						<td>UNEA Meeting</td>
 						<td>Nairobi</td>
+						<td>02-02-2017</td>
+						<td>04-02-2017</td>
 						<td>$120</td>
-						<td><button type="submit" class="btn btn-primary">View</button></td>
-						<td><button type="submit" class="btn btn-primary">Approve</button></td>
-						<td><button type="submit" class="btn btn-primary">Reject</button></td>
+						<td>$1200</td>
+						<td><button type="submit" class="btn btn-primary approvebtn">Approve</button></td>
+						<td><button type="submit" class="btn btn-primary declinebtn">Reject</button></td>
 					</tr>
 					<tr>
-						<td>1</td>
+						<td>2</td>
 						<td>Carl Lopez</td>
 						<td>UNEP Meeting</td>
 						<td>Geneva</td>
+						<td>05-05-2017</td>
+						<td>15-05-2017</td>
 						<td>$100</td>
-						<td><button type="submit" class="btn btn-primary">View</button></td>
-						<td><button type="submit" class="btn btn-primary">Approve</button></td>
-						<td><button type="submit" class="btn btn-primary">Reject</button></td>
+						<td>$1000</td>
+						<td><button type="submit" class="btn btn-primary approvebtn">Approve</button></td>
+						<td><button type="submit" class="btn btn-primary declinebtn">Reject</button></td>
 					</tr>
 					<tr>
-						<td>1</td>
+						<td>3</td>
 						<td>Steph Lee</td>
 						<td>UNOG Meeting</td>
 						<td>brussels</td>
+						<td>06-05-2017</td>
+						<td>16-05-2017</td>
 						<td>$180</td>
-						<td><button type="submit" class="btn btn-primary">View</button></td>
-						<td><button type="submit" class="btn btn-primary">Approve</button></td>
-						<td><button type="submit" class="btn btn-primary">Reject</button></td>
+						<td>$1080</td>
+						<td><button type="submit" class="btn btn-primary approvebtn">Approve</button></td>
+						<td><button type="submit" class="btn btn-primary declinebtn">Reject</button></td>
 					</tr>
 					<tr>
-						<td>1</td>
+						<td>4</td>
 						<td>Dennis James</td>
 						<td>KIE Meeting</td>
 						<td>Cape Town</td>
+						<td>03-08-2017</td>
+						<td>13-08-2017</td>
 						<td>$1200</td>
-						<td><button type="submit" class="btn btn-primary">View</button></td>
-						<td><button type="submit" class="btn btn-primary">Approve</button></td>
-						<td><button type="submit" class="btn btn-primary">Reject</button></td>
+						<td>$10200</td>
+						<td><button type="submit" class="btn btn-primary approvebtn">Approve</button></td>
+						<td><button type="submit" class="btn btn-primary declinebtn">Reject</button></td>
 					</tr>
 					
 				</tbody>
@@ -98,7 +108,7 @@
     </div>
     
     <!-- Modal -->
-  <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
+  <div class="modal fade" tabindex="-1" id="acceptModal" role="dialog">
     <div class="modal-dialog" role="document">
     
       <!-- Modal content-->
@@ -108,16 +118,60 @@
           <h4 class="modal-title">Travel System</h4>
         </div>
         <div class="modal-body">
-          <p style = "color: red">Please fill in all the fields</p>
+		  <form action = "" method = "post">
+			<div class="form-group">
+			<label class="control-label" for="approved">Comments:</label><br />
+			<textarea id = "approved" name = "approved" cols = "70" rows = "5"></textarea>
+			</div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Approve</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" tabindex="-1" id="declineModal" role="dialog">
+    <div class="modal-dialog" role="document">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Travel System</h4>
+        </div>
+        <div class="modal-body">
+		  <form action = "" method = "post">
+			<div class="form-group">
+			<label class="control-label" for="declined">Comments:</label><br />
+			<textarea id = "declined" name = "declined" cols = "70" rows = "5"></textarea>
+			</div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Decline</button>
         </div>
       </div>
       
     </div>
   </div>
   <script type = "text/javascript">
+	  
+	    //function to redirect page		
+		$(document).on('click', '.approvebtn', function(){
+			$('#acceptModal').modal('show');
+		});
+		
+		//function to redirect page		
+		$(document).on('click', '.declinebtn', function(){
+			$('#declineModal').modal('show');
+		});
+	  
 	    $(document).ready(function() {
 			$('#myTable').DataTable();
 			$('#nav li').removeClass('active');
