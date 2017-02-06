@@ -52,7 +52,7 @@
 						<td>UNEA Meeting</td>
 						<td>Nairobi</td>
 						<td>$120</td>
-						<td><button type="submit" class="btn btn-primary">Edit</button></td>
+						<td><button type="submit" class="btn btn-primary editplanbtn">Edit</button></td>
 						<td><button type="submit" class="btn btn-primary">Submit</button></td>
 					</tr>
 					<tr>
@@ -61,7 +61,7 @@
 						<td>UNEP Meeting</td>
 						<td>Geneva</td>
 						<td>$100</td>
-						<td><button type="submit" class="btn btn-primary">Edit</button></td>
+						<td><button type="submit" class="btn btn-primary editplanbtn">Edit</button></td>
 						<td><button type="submit" class="btn btn-primary">Submit</button></td>
 					</tr>
 					<tr>
@@ -70,7 +70,7 @@
 						<td>UNOG Meeting</td>
 						<td>brussels</td>
 						<td>$180</td>
-						<td><button type="submit" class="btn btn-primary">Edit</button></td>
+						<td><button type="submit" class="btn btn-primary editplanbtn">Edit</button></td>
 						<td><button type="submit" class="btn btn-primary">Submit</button></td>
 					</tr>
 					<tr>
@@ -79,7 +79,7 @@
 						<td>KIE Meeting</td>
 						<td>Cape Town</td>
 						<td>$1200</td>
-						<td><button type="submit" class="btn btn-primary">Edit</button></td>
+						<td><button type="submit" class="btn btn-primary editplanbtn">Edit</button></td>
 						<td><button type="submit" class="btn btn-primary">Submit</button></td>
 					</tr>
 					
@@ -113,6 +113,12 @@
     </div>
   </div>
   <script type = "text/javascript">
+	  
+		//function to redirect page		
+		$(document).on('click', '.editplanbtn', function(){
+			window.location.href = 'plan.php';
+		});
+	  
 	    $(document).ready(function() {
 			$('#myTable').DataTable();
 			$('#nav li').removeClass('active');
