@@ -51,7 +51,7 @@
 						<td>UNEA Meeting</td>
 						<td>Nairobi</td>
 						<td>$120</td>
-						<td><button type="submit" class="btn btn-primary">Update Status</button></td>
+						<td><button type="submit" class="btn btn-primary statusbtn">Update Status</button></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -59,7 +59,7 @@
 						<td>UNEP Meeting</td>
 						<td>Geneva</td>
 						<td>$100</td>
-						<td><button type="submit" class="btn btn-primary">Update Status</button></td>
+						<td><button type="submit" class="btn btn-primary statusbtn">Update Status</button></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -67,7 +67,7 @@
 						<td>UNOG Meeting</td>
 						<td>brussels</td>
 						<td>$180</td>
-						<td><button type="submit" class="btn btn-primary">Update Status</button></td>
+						<td><button type="submit" class="btn btn-primary statusbtn">Update Status</button></td>
 					</tr>
 					<tr>
 						<td>1</td>
@@ -75,7 +75,7 @@
 						<td>KIE Meeting</td>
 						<td>Cape Town</td>
 						<td>$1200</td>
-						<td><button type="submit" class="btn btn-primary">Update Status</button></td>
+						<td><button type="submit" class="btn btn-primary statusbtn">Update Status</button></td>
 					</tr>
 					
 				</tbody>
@@ -108,6 +108,12 @@
     </div>
   </div>
   <script type = "text/javascript">
+
+		//function to redirect page		
+		$(document).on('click', '.statusbtn', function(){
+			window.location.href = 'status.php';
+		});
+	  
 	    $(document).ready(function() {
 			$('#myTable').DataTable();
 			$('#nav li').removeClass('active');
