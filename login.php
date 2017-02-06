@@ -33,12 +33,12 @@
 			    
 			    
 			    <div class="form-group">
-					<label for="user">Username / Email:</label>
+					<label class="control-label" for="user">Username / Email:</label>
 					<input type = "text" class="form-control" id="user" name = "user" placeholder="Username / Email"></textarea>
 			    </div>
 			    
 			     <div class="form-group">
-					<label for="comments">Password:</label>
+					<label class="control-label" for="comments">Password:</label>
 					<input type = "password" class="form-control" id="password" name = "password" placeholder="Password">
 			    </div>
 			    
@@ -85,9 +85,12 @@
 			
 			var error = 0;
 			
-			$('input').each(function() { 
-				if($.trim($(this).val()) == '') 
-					error = 1; 
+			$('input').each(function() {
+				$(this).parent().closest('div').removeClass('has-error'); 
+				if($.trim($(this).val()) == ''){
+					$(this).parent().closest('div').addClass('has-error'); 
+					error = 1;
+				} 
 			});
 			
 			if(error == 1){

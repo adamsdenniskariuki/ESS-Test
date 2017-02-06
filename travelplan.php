@@ -31,31 +31,31 @@
 		   <div class="panel-footer">
 			   <form action = "travelplan.html" method = "get" id = "travelform">
 			    <div class="form-group">
-					<label for="name">Name:</label>
+					<label class="control-label" for="name">Name:</label>
 					<input type="text" class="form-control" id="name" name = "name" placeholder="Name">
 			    </div>
 			    <div class="form-group">
-					<label for="grade">Grade:</label>
+					<label class="control-label" for="grade">Grade:</label>
 					<input type="text" class="form-control" id="grade" name = "grade" placeholder="Grade">
 			    </div>
 			    <div class="form-group">
-					<label for="venue">Venue:</label>
+					<label class="control-label" for="venue">Venue:</label>
 					<input type="text" class="form-control" id="venue" name = "venue" placeholder="Venue">
 			    </div>
 			    <div class="form-group">
-					<label for="from">From:</label>
+					<label class="control-label" for="from">From:</label>
 					<input type="text" class="form-control datereq" id="from" name = "from" placeholder="Date From">
 			    </div>
 			    <div class="form-group">
-					<label for="to">To:</label>
+					<label class="control-label" for="to">To:</label>
 					<input type="text" class="form-control datereq" id="to" name = "to" placeholder="Date To">
 			    </div>
 			    <div class="form-group">
-					<label for="daysaway">Days Away (Mission + Travel Days + Leave):</label>
+					<label class="control-label" for="daysaway">Days Away (Mission + Travel Days + Leave):</label>
 					<input type="text" class="form-control" id="daysaway" name = "daysaway" placeholder="Days Away">
 			    </div>
 			    <div class="form-group">
-					<label for="justification">Justification:</label>
+					<label class="control-label" for="justification">Justification:</label>
 					<input type="text" class="form-control" id="justification" name = "justification" placeholder="Justification">
 			    </div>
 			    <div class="form-group">
@@ -81,7 +81,7 @@
 					</select>
 			    </div>
 			    <div class="form-group">
-					<label for="est_cost">Estimated travel cost USD:</label>
+					<label class="control-label" for="est_cost">Estimated travel cost USD:</label>
 					<input type="text" class="form-control allcosts" id="est_cost" name = "est_cost" placeholder="Estimated travel cost USD">
 			    </div>
 			    <div class="form-group">
@@ -96,7 +96,7 @@
 				   </div>
 			    </div>
 			    <div class="form-group">
-					<label for="budget_percent">Percentage of travel budget spent:</label>
+					<label class="control-label" for="budget_percent">Percentage of travel budget spent:</label>
 					<input type="text" class="form-control" id="budget_percent" name = "budget_percent" disabled placeholder="Percentage of travel budget spent">
 			    </div>
 			    <div class="form-group">
@@ -121,15 +121,15 @@
 					</select>
 			    </div>
 			    <div class="form-group">
-					<label for="total_budget">Total Allocated Travel Budget for the year:</label>
+					<label class="control-label" for="total_budget">Total Allocated Travel Budget for the year:</label>
 					<input type="text" class="form-control" id="total_budget" name = "total_budget" placeholder="Total Allocated Travel Budget for the year">
 			    </div>
 			    <div class="form-group">
 				  <div class="panel panel-primary">  
 				   <div class="panel-body">
-					<label for="travel_balance">Travel Budget Balance:</label>
+					<label class="control-label" for="travel_balance">Travel Budget Balance:</label>
 					<input type="text" class="form-control" id="travel_balance" name = "travel_balance" disabled placeholder="Travel Budget Balance">	
-					<label for="travel_balance_date">Date:</label>
+					<label class="control-label" for="travel_balance_date">Date:</label>
 					<input type="text" class="form-control datereq" id="travel_balance_date" name = "travel_balance_date" placeholder="Date">
 					</div>
 				  </div>
@@ -146,7 +146,7 @@
 					</select>
 			    </div>
 			    <div class="form-group">
-					<label for="comm_support">Communications support required:</label>
+					<label class="control-label" for="comm_support">Communications support required:</label>
 					<input type="text" class="form-control" id="comm_support" name = "comm_support" placeholder="Communications support required">
 			    </div>
 			    <button type="submit" class="btn btn-primary">Submit</button>
@@ -181,7 +181,7 @@
 	    
 	    //function to add new cost fields to the form
 		function add_fields(){
-			var add_html = '<label for="add_name">Additional Name:</label><input type="text" class="form-control" id="add_name" name = "add_name[]" placeholder="Additional Name"><label for="add_cost">Additional Cost:</label><input type="text" class="form-control allcosts" id="add_cost" name = "add_cost[]" onkeyup = "travel_balance()" placeholder="Additional Cost">';
+			var add_html = '<label class="control-label" for="add_name">Additional Name:</label><input type="text" class="form-control" id="add_name" name = "add_name[]" placeholder="Additional Name"><label class="control-label" for="add_cost">Additional Cost:</label><input type="text" class="form-control allcosts" id="add_cost" name = "add_cost[]" placeholder="Additional Cost">';
 			$('#additional_fields').append(add_html);
 		}
 		
@@ -191,9 +191,12 @@
 			var inputs = $( ":input" );
 			var error = 0;
 			
-			$('input').each(function() { 
-				if($.trim($(this).val()) == '') 
-					error = 1; 
+			$('input').each(function() {
+				$(this).parent().closest('div').removeClass('has-error');
+				if($.trim($(this).val()) == ''){
+					$(this).parent().closest('div').addClass('has-error');
+					error = 1;
+				}	 
 			});
 			
 			if (parseFloat($("#travel_balance").val()) <= 0 || parseFloat($("#budget_percent").val()) <= 0){

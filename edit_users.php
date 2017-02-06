@@ -36,11 +36,11 @@
 			   <form action = "" method = "post" id = "userform">
 				   
 				   <div class="form-group">
-					<label for="name">Name:</label>
+					<label class="control-label" for="name">Name:</label>
 					<input type="text" class="form-control" id="name" name = "name" placeholder="Name">
 			       </div>
 			       <div class="form-group">
-					<label for="regno">Reg. No:</label>
+					<label class="control-label" for="regno">Reg. No:</label>
 					<input type="text" class="form-control" id="regno" name = "regno" placeholder="Reg. No">
 			       </div>
 			       <div class="form-group">
@@ -51,19 +51,19 @@
 					</select>
 			       </div>
 			       <div class="form-group">
-					<label for="email">Email:</label>
+					<label class="control-label" for="email">Email:</label>
 					<input type="text" class="form-control" id="email" name = "email" placeholder="Email">
 			       </div>
 			       <div class="form-group">
-					<label for="username">UserName:</label>
+					<label class="control-label" for="username">UserName:</label>
 					<input type="text" class="form-control" id="username" name = "username" placeholder="Username">
 			       </div>
 			       <div class="form-group">
-					<label for="password">Password:</label>
+					<label class="control-label" for="password">Password:</label>
 					<input type="password" class="form-control" id="password" name = "password" placeholder="Password">
 			       </div>
 			       <div class="form-group">
-					<label for="cpassword">Confirm Password:</label>
+					<label class="control-label" for="cpassword">Confirm Password:</label>
 					<input type="password" class="form-control" id="cpassword" name = "cpassword" placeholder="Confirm Password">
 			       </div>
 					<div class="form-group">
@@ -150,9 +150,12 @@
 			var inputs = $( ":input" );
 			var error = 0;
 			
-			$('input').each(function() { 
-				if($.trim($(this).val()) == '') 
-					error = 1; 
+			$('input').each(function() {
+				$(this).parent().closest('div').removeClass('has-error'); 
+				if($.trim($(this).val()) == ''){
+					$(this).parent().closest('div').addClass('has-error');
+					error = 1;
+				} 
 			});
 			
 			if(error == 1){

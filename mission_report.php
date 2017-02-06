@@ -33,12 +33,12 @@
 			    
 			    
 			    <div class="form-group">
-					<label for="comments">Comments:</label>
+					<label class="control-label" for="comments">Comments:</label>
 					<textarea class="form-control" id="comments" name = "comments" placeholder="Comments"></textarea>
 			    </div>
 			    
 			    <div class="form-group">
-					<label for="report">Mission Report:</label>
+					<label class="control-label" for="report">Mission Report:</label>
 					<input type="file" class="form-control" id="report" name = "report">
 			    </div>
 			    
@@ -77,9 +77,12 @@
 			
 			var error = 0;
 			
-			$('textarea').each(function() { 
-				if($.trim($(this).val()) == '') 
+			$('textarea').each(function() {
+				$(this).parent().closest('div').removeClass('has-error'); 
+				if($.trim($(this).val()) == ''){
+					$(this).parent().closest('div').addClass('has-error');
 					error = 1; 
+				}	
 			});
 			
 			if(error == 1){
