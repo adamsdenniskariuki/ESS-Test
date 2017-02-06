@@ -121,7 +121,7 @@
 		  <form action = "" method = "post">
 			<div class="form-group">
 			<label class="control-label" for="approved">Comments:</label><br />
-			<textarea id = "approved" name = "approved" cols = "70" rows = "5"></textarea>
+			<textarea class="form-control" id = "approved" name = "approved"></textarea>
 			</div>
           </form>
         </div>
@@ -148,7 +148,7 @@
 		  <form action = "" method = "post">
 			<div class="form-group">
 			<label class="control-label" for="declined">Comments:</label><br />
-			<textarea id = "declined" name = "declined" cols = "70" rows = "5"></textarea>
+			<textarea class="form-control" id = "declined" name = "declined"></textarea>
 			</div>
           </form>
         </div>
